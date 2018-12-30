@@ -77,30 +77,46 @@ function getLocation(location) {
   }
 }
 
+var count = 0;
+var addOne = function addOne() {
+  console.log('add one');
+};
+
+var minusOne = function minusOne() {
+  console.log('minus one');
+};
+
+var reset = function reset() {
+  console.log('reset');
+};
+
 var templateTwo = React.createElement(
   "div",
   null,
   React.createElement(
     "h1",
     null,
-    user.name ? user.name : 'Anonymous'
+    "Count: ",
+    count
   ),
-  user.age && user.age >= 18 && React.createElement(
-    "p",
-    null,
-    "Age: ",
-    user.age
+  React.createElement(
+    "button",
+    { onClick: addOne },
+    "+ 1"
   ),
-  getLocation(user.location)
+  React.createElement(
+    "button",
+    { onClick: minusOne },
+    "- 1"
+  ),
+  React.createElement(
+    "button",
+    { onClick: reset },
+    "reset"
+  )
 );
-// Create a templateTwo var JSX expression
-// div
-// h1 --> Rupert Adams
-// p --> Age: 27
-//p --> Location: London
-//p --> RendertemplateTwo instead of template
 
-
+console.log(templateTwo);
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
