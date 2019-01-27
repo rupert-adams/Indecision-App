@@ -33,6 +33,18 @@ var onFormSubmit = function onFormSubmit(e) {
   renderApp();
 };
 
+var removeAll = function removeAll() {
+
+  app.options = [];
+  renderApp();
+};
+
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 var template = React.createElement(
   "div",
   null,
@@ -52,10 +64,28 @@ var template = React.createElement(
     app.options.length > 0 ? 'Here are your options' : 'no options'
   ),
   React.createElement(
-    "p",
-    null,
-    app.options.length
+    "button",
+    { disabled: true, onClick: onMakeDecision },
+    "What should I do?"
   ),
+  React.createElement(
+    "button",
+    { onClick: removeAll },
+    "Remove All"
+  ),
+  [React.createElement(
+    "p",
+    { key: "1" },
+    "a"
+  ), React.createElement(
+    "p",
+    { key: "2" },
+    "b"
+  ), React.createElement(
+    "p",
+    { key: "3" },
+    "c"
+  )],
   React.createElement(
     "ol",
     null,
@@ -87,8 +117,13 @@ var template = React.createElement(
   )
 );
 
+//create "Remove All" button above list
+//onClick will wipe the array and rerender
+
 var appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
+
+var numbers = [55, 101, 1000];
 
 var renderApp = function renderApp() {
   var template = React.createElement(
@@ -110,28 +145,25 @@ var renderApp = function renderApp() {
       app.options.length > 0 ? 'Here are your options' : 'no options'
     ),
     React.createElement(
-      "p",
-      null,
-      app.options.length
+      "button",
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      "What should I do?"
+    ),
+    React.createElement(
+      "button",
+      { onClick: removeAll },
+      "Remove All"
     ),
     React.createElement(
       "ol",
       null,
-      React.createElement(
-        "li",
-        null,
-        "Item one"
-      ),
-      React.createElement(
-        "li",
-        null,
-        "Item two"
-      ),
-      React.createElement(
-        "li",
-        null,
-        "Item three"
-      )
+      app.options.map(function (option) {
+        return React.createElement(
+          "li",
+          { key: option },
+          option
+        );
+      })
     ),
     React.createElement(
       "form",
@@ -149,6 +181,3 @@ var renderApp = function renderApp() {
 };
 
 renderApp();
-// create a render function that renders the new jsx
-// call it right away
-//call it after options array

@@ -31,12 +31,28 @@ const onFormSubmit = (e) => {
   renderApp();
 };
 
+const removeAll = () => {
+
+  app.options = [];
+  renderApp();
+};
+
+const onMakeDecision = () => {
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  alert(option);
+};
+
 const template = (
   <div>
     <h1>{app.title}</h1>
     {app.subtitle && <p>{app.subtitle}</p>}
     <p>{app.options.length > 0 ? 'Here are your options' : 'no options'}</p>
-    <p>{app.options.length}</p>
+    <button disabled={true} onClick={onMakeDecision}>What should I do?</button>
+    <button onClick={removeAll}>Remove All</button>
+    {
+      [<p key="1">a</p>, <p key="2">b</p>, <p key="3">c</p>]
+    }
     <ol>
       <li>Item one</li>
       <li>Item two</li>
@@ -49,8 +65,13 @@ const template = (
   </div>
 );
 
+//create "Remove All" button above list
+//onClick will wipe the array and rerender
+
 const appRoot = document.getElementById('app');
 ReactDOM.render(template, appRoot);
+
+const numbers = [55, 101, 1000];
 
 const renderApp = () => {
   const template = (
@@ -58,11 +79,14 @@ const renderApp = () => {
       <h1>{app.title}</h1>
       {app.subtitle && <p>{app.subtitle}</p>}
       <p>{app.options.length > 0 ? 'Here are your options' : 'no options'}</p>
-      <p>{app.options.length}</p>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
+      <button onClick={removeAll}>Remove All</button>
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
-        <li>Item three</li>
+        {
+          app.options.map((option) => {
+            return <li key={option}>{option}</li>
+          })
+        }
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option"/>
@@ -75,6 +99,3 @@ const renderApp = () => {
 };
 
 renderApp();
-// create a render function that renders the new jsx
-// call it right away
-//call it after options array
