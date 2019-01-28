@@ -2,10 +2,17 @@ console.log("App is running!");
 
 const app = {
   title: 'Visibility Toggle',
-  bool: false,
   toggle: 'Toggle visibility',
   hidden: []
 }
+
+let visibility = false;
+
+const toggleVisibility = () => {
+  visibility = !visibility;
+  renderApp();
+}
+
 
 const onClicked = () => {
   if (app.hidden === undefined) {
@@ -18,19 +25,18 @@ const onClicked = () => {
   renderApp();
 }
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    <button onClick={onClicked}>{app.toggle}</button>
-    <p>{app.hidden}</p>
-  </div>
-);
-
 const renderApp = () => {
   const template = (
     <div>
       <h1>{app.title}</h1>
-      <button onClick={onClicked}>{app.toggle}</button>
+      <button onClick={toggleVisibility}>
+        {visibility ? 'Hide Details' : 'Show Details'}
+      </button>
+      {visibility && (
+        <div>
+          <p>Hey, These are some details you can now see!</p>
+        </div>
+      )}
       <p>{app.hidden}</p>
     </div>
   );

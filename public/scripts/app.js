@@ -4,9 +4,15 @@ console.log("App is running!");
 
 var app = {
   title: 'Visibility Toggle',
-  bool: false,
   toggle: 'Toggle visibility',
   hidden: []
+};
+
+var visibility = false;
+
+var toggleVisibility = function toggleVisibility() {
+  visibility = !visibility;
+  renderApp();
 };
 
 var onClicked = function onClicked() {
@@ -20,26 +26,6 @@ var onClicked = function onClicked() {
   renderApp();
 };
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  React.createElement(
-    'button',
-    { onClick: onClicked },
-    app.toggle
-  ),
-  React.createElement(
-    'p',
-    null,
-    app.hidden
-  )
-);
-
 var renderApp = function renderApp() {
   var template = React.createElement(
     'div',
@@ -51,8 +37,17 @@ var renderApp = function renderApp() {
     ),
     React.createElement(
       'button',
-      { onClick: onClicked },
-      app.toggle
+      { onClick: toggleVisibility },
+      visibility ? 'Hide Details' : 'Show Details'
+    ),
+    visibility && React.createElement(
+      'div',
+      null,
+      React.createElement(
+        'p',
+        null,
+        'Hey, These are some details you can now see!'
+      )
     ),
     React.createElement(
       'p',
