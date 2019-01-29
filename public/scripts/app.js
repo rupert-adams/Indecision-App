@@ -1,63 +1,44 @@
 'use strict';
 
-console.log("App is running!");
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var app = {
-  title: 'Visibility Toggle',
-  toggle: 'Toggle visibility',
-  hidden: []
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var visibility = false;
+// set up constructor to take name and age, default to 0
+// getDescription will return a string, taking into account the persons age - name is age years old.
 
-var toggleVisibility = function toggleVisibility() {
-  visibility = !visibility;
-  renderApp();
-};
+var Person = function () {
+  function Person() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anon';
+    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-var onClicked = function onClicked() {
-  if (app.hidden === undefined) {
-    app.hidden = 'This is now visible!';
-    console.log('working');
-  } else {
-    app.hidden = undefined;
-    console.log('working');
+    _classCallCheck(this, Person);
+
+    this.name = name;
+    this.age = age;
   }
-  renderApp();
-};
 
-var renderApp = function renderApp() {
-  var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'h1',
-      null,
-      app.title
-    ),
-    React.createElement(
-      'button',
-      { onClick: toggleVisibility },
-      visibility ? 'Hide Details' : 'Show Details'
-    ),
-    visibility && React.createElement(
-      'div',
-      null,
-      React.createElement(
-        'p',
-        null,
-        'Hey, These are some details you can now see!'
-      )
-    ),
-    React.createElement(
-      'p',
-      null,
-      app.hidden
-    )
-  );
-  ReactDOM.render(template, appRoot);
-};
+  _createClass(Person, [{
+    key: 'getGreeting',
+    value: function getGreeting() {
+      return 'Hi. I am ' + this.name + '!';
+    }
+  }, {
+    key: 'getDescription',
+    value: function getDescription() {
+      return this.name + ' is ' + this.age + ' years old.';
+    }
+  }]);
 
-var appRoot = document.getElementById('app');
+  return Person;
+}();
 
-renderApp();
+var me = new Person('Rupert Adams', 27);
+
+console.log(me.getGreeting());
+console.log(me.getDescription());
+
+var other = new Person();
+
+console.log(other.getGreeting());
+console.log(other.getDescription());
