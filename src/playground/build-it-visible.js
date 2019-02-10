@@ -1,48 +1,42 @@
-console.log("App is running!");
+// create a componant VisibilityToggle - constructor, render, handleToggleVisibility
+// visibility is false default
 
-const app = {
-  title: 'Visibility Toggle',
-  toggle: 'Toggle visibility',
-  hidden: []
-}
-
-let visibility = false;
-
-const toggleVisibility = () => {
-  visibility = !visibility;
-  renderApp();
-}
-
-
-const onClicked = () => {
-  if (app.hidden === undefined) {
-    app.hidden = 'This is now visible!'
-    console.log('working');
-  } else {
-    app.hidden = undefined;
-    console.log('working');
+class VisibilityToggle extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleToggleVisibility = this.handleToggleVisibility.bind(this);
+    this.state = {
+      title: 'Visibility Toggle',
+      toggle: 'Toggle visibility',
+      hidden: [],
+      visibility: false
+    };
   }
-  renderApp();
+
+  handleToggleVisibility(prevState) {
+    this.setState((prevState) => {
+      return {
+        visibility: !prevState.visibility
+      };
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.title}</h1>
+        <button onClick={this.handleToggleVisibility}>
+          {this.state.visibility ? 'Hide Details' : 'Show Details'}
+        </button>
+        {this.state.visibility && (
+          <div>
+            <p>Hey, These are some details you can now see!</p>
+          </div>
+        )}
+        <p>{this.state.hidden}</p>
+      </div>
+    );
+  }
 }
 
-const renderApp = () => {
-  const template = (
-    <div>
-      <h1>{app.title}</h1>
-      <button onClick={toggleVisibility}>
-        {visibility ? 'Hide Details' : 'Show Details'}
-      </button>
-      {visibility && (
-        <div>
-          <p>Hey, These are some details you can now see!</p>
-        </div>
-      )}
-      <p>{app.hidden}</p>
-    </div>
-  );
-  ReactDOM.render(template, appRoot)
-};
-
-const appRoot = document.getElementById('app');
-
-renderApp();
+ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
