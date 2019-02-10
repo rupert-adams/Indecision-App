@@ -1,133 +1,146 @@
 'use strict';
 
-var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var Counter = function (_React$Component) {
+  _inherits(Counter, _React$Component);
 
-// set up constructor to take name and age, default to 0
-// getDescription will return a string, taking into account the persons age - name is age years old.
+  function Counter(props) {
+    _classCallCheck(this, Counter);
 
-var Person = function () {
-  function Person() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anon';
-    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
 
-    _classCallCheck(this, Person);
-
-    this.name = name;
-    this.age = age;
-  }
-
-  _createClass(Person, [{
-    key: 'getGreeting',
-    value: function getGreeting() {
-      return 'Hi. I am ' + this.name + '!';
-    }
-  }, {
-    key: 'getDescription',
-    value: function getDescription() {
-      return this.name + ' is ' + this.age + ' year(s) old.';
-    }
-  }]);
-
-  return Person;
-}();
-
-var Student = function (_Person) {
-  _inherits(Student, _Person);
-
-  function Student() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anon';
-    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var major = arguments[2];
-
-    _classCallCheck(this, Student);
-
-    var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
-
-    _this.major = major;
+    _this.handleAddOne = _this.handleAddOne.bind(_this);
+    _this.handleMinusOne = _this.handleMinusOne.bind(_this);
+    _this.handleReset = _this.handleReset.bind(_this);
+    _this.state = {
+      count: 0
+    };
     return _this;
   }
 
-  _createClass(Student, [{
-    key: 'hasMajor',
-    value: function hasMajor() {
-      return !!this.major;
+  _createClass(Counter, [{
+    key: 'handleAddOne',
+    value: function handleAddOne() {
+      this.setState(function (prevState) {
+        return {
+          count: prevState.count + 1
+        };
+      });
     }
   }, {
-    key: 'getDescription',
-    value: function getDescription() {
-      var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this);
-
-      if (this.hasMajor()) {
-        description = description += ' And they major in ' + this.major;
-      }
-
-      return description;
+    key: 'handleMinusOne',
+    value: function handleMinusOne() {
+      this.setState(function (prevState) {
+        return {
+          count: prevState.count - 1
+        };
+      });
+    }
+  }, {
+    key: 'handleReset',
+    value: function handleReset() {
+      this.setState(function () {
+        return {
+          count: 0
+        };
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return React.createElement(
+        'div',
+        null,
+        React.createElement(
+          'h1',
+          null,
+          'Count: ',
+          this.state.count
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.handleAddOne },
+          '+ 1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.handleMinusOne },
+          '- 1'
+        ),
+        React.createElement(
+          'button',
+          { onClick: this.handleReset },
+          'Reset'
+        )
+      );
     }
   }]);
 
-  return Student;
-}(Person);
+  return Counter;
+}(React.Component);
 
-// traveller < Person
-// home location support
-// overide getGreeting to add home location if it exists
+ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
 
-var Traveller = function (_Person2) {
-  _inherits(Traveller, _Person2);
-
-  function Traveller() {
-    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anon';
-    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-    var homeLocation = arguments[2];
-
-    _classCallCheck(this, Traveller);
-
-    var _this2 = _possibleConstructorReturn(this, (Traveller.__proto__ || Object.getPrototypeOf(Traveller)).call(this, name, age));
-
-    _this2.homeLocation = homeLocation;
-    return _this2;
-  }
-
-  _createClass(Traveller, [{
-    key: 'hasLocation',
-    value: function hasLocation() {
-      return !!this.homeLocation;
-    }
-  }, {
-    key: 'getGreeting',
-    value: function getGreeting() {
-      var greeting = _get(Traveller.prototype.__proto__ || Object.getPrototypeOf(Traveller.prototype), 'getGreeting', this).call(this);
-
-      if (this.hasLocation()) {
-        greeting = greeting += ' And I am visiting from ' + this.homeLocation + '.';
-      }
-
-      return greeting;
-    }
-  }]);
-
-  return Traveller;
-}(Person);
-
-var me = new Student('Rupert Adams', 27, 'Computer Science');
-var again = new Traveller('Rupert Adams', 27, 'London');
-console.log(me.getGreeting());
-console.log(me);
-console.log(me.hasMajor());
-console.log(me.getDescription());
-console.log(again.getGreeting());
-
-var other = new Student();
-
-console.log(other.getGreeting());
-console.log(other);
-console.log(other.hasMajor());
-console.log(other.getDescription());
+// const user = {
+//   name: 'Rupert Adams',
+//   age: 27,
+//   location: 'London'
+// };
+//
+// function getLocation(location) {
+//   if (location) {
+//     return <p>Location: {location}</p>;
+//   }
+// }
+//
+// let count = 0;
+// const addOne = () => {
+//   count++;
+//   renderCounterApp();
+// };
+//
+// const minusOne = () => {
+//   count--;
+//   renderCounterApp();
+// };
+//
+// const reset = () => {
+//   count = 0;
+//   renderCounterApp();
+// };
+//
+// const templateTwo = (
+//   <div>
+//   <h1>Count: {count}</h1>
+//   <button onClick={addOne}>+ 1</button>
+//   <button onClick={minusOne}>- 1</button>
+//   <button onClick={reset}>reset</button>
+//   </div>
+// );
+//
+// console.log(templateTwo);
+// const appRoot = document.getElementById('app');
+//
+// ReactDOM.render(templateTwo, appRoot);
+//
+// const renderCounterApp = () => {
+//   const templateTwo = (
+//     <div>
+//     <h1>Count: {count}</h1>
+//     <button onClick={addOne}>+ 1</button>
+//     <button onClick={minusOne}>- 1</button>
+//     <button onClick={reset}>reset</button>
+//     </div>
+//   );
+//
+//   ReactDOM.render(templateTwo, appRoot);
+// };
+//
+// renderCounterApp();
