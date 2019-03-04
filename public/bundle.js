@@ -95,6 +95,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(6);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_AddOption__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(13);
+/* harmony import */ var _components_Option__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(14);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -112,6 +113,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -251,20 +253,12 @@ var Options = function Options(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.handleDeleteOptions
   }, "Remove All"), props.options.length === 0 && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please add an option to get started"), props.options.map(function (option) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Option, {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Option__WEBPACK_IMPORTED_MODULE_3__["default"], {
       key: option,
       optionText: option,
       handleDeleteOption: props.handleDeleteOption
     });
   }));
-};
-
-var Option = function Option(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Option: ", props.optionText, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: function onClick(e) {
-      props.handleDeleteOption(props.optionText);
-    }
-  }, "Remove"));
 };
 
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(IndecisionApp, null), document.getElementById('app'));
@@ -24801,6 +24795,26 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
+
+/***/ }),
+/* 14 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Option = function Option(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Option: ", props.optionText, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick(e) {
+      props.handleDeleteOption(props.optionText);
+    }
+  }, "Remove"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Option);
 
 /***/ })
 /******/ ]);
