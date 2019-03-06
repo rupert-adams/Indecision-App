@@ -13,8 +13,8 @@ As This is progressed I will update this README.
 - ~~JSX and ES6 syntax~~ :white_check_mark:
 - ~~React Components~~ :white_check_mark:
 - ~~Stateless Functional Components~~ :white_check_mark:
-- Webpack :on:
-- Using a third-party component
+- ~~Webpack~~ :white_check_mark:
+- Using a third-party component :on:
 - Styling React
 - React-Router
 - Redux
