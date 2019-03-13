@@ -14,8 +14,8 @@ As This is progressed I will update this README.
 - ~~React Components~~ :white_check_mark:
 - ~~Stateless Functional Components~~ :white_check_mark:
 - ~~Webpack~~ :white_check_mark:
-- Using a third-party component :on:
-- Styling React
+- ~~Using a third-party component~~ :white_check_mark:
+- Styling React :on:
 - React-Router
 - Redux
 - React with Redux
