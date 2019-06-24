@@ -11,7 +11,7 @@
     "build": "webpack",
     "dev-server": "webpack-dev-server",
     "test": "jest",
-    "heroku-postbuild": "yarn run build:prod"
+    "start": "node server/server.js"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
