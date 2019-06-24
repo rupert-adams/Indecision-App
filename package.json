@@ -2,13 +2,15 @@
   "name": "indecision-app",
   "version": "1.0.0",
   "main": "index.js",
+  "engines": {
+    "node": "11.1.0"
+  },
   "license": "MIT",
   "scripts": {
     "server": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "test": "jest",
-    "heroku-postbuild": "yarn run build:prod"
+    "test": "jest"
   },
   "dependencies": {
     "@babel/core": "^7.3.4",
