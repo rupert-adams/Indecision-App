@@ -14,3 +14,10 @@ As I went through this project, I learnt and then experimented with various aspe
 - Webpack :white_check_mark:
 - Using a third-party component :white_check_mark:
 - Styling React :white_check_mark:
+
+## Deployment
+
+The app is currently being deployed to Heroku at:
+https://indecision-app-rupiee.herokuapp.com/
+
+Comprehensive testing will be added at a later date as will TravisCI for continuous integration.
